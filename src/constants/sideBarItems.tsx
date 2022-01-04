@@ -1,5 +1,5 @@
-import { HOME } from "./routes";
-import { LocalMallRounded } from "@mui/icons-material";
+import { FAVORITE_PRODUCT, HOME } from "./routes";
+import { FavoriteRounded, LocalMallRounded } from "@mui/icons-material";
 
 export const sideBarItems = [
   {
@@ -7,5 +7,11 @@ export const sideBarItems = [
     path: HOME,
     label: 'All Products',
     icon: <LocalMallRounded />,
+  },
+  {
+    id: 2,
+    path: FAVORITE_PRODUCT,
+    label: 'Favorite Products',
+    icon: <FavoriteRounded />,
   },
 ];

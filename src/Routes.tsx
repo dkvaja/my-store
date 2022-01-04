@@ -1,12 +1,13 @@
 import MainLayout from "./layouts/MainLayout";
 import Store from "./pages/Store";
 import NotFound from './pages/NotFound';
-import { HOME, NOT_FOUND, PRODUCT_DETAIL, SIGN_IN } from "./constants/routes";
+import { FAVORITE_PRODUCT, HOME, NOT_FOUND, PRODUCT_DETAIL, SIGN_IN } from "./constants/routes";
 import ProductDetail from './pages/ProductDetail';
 import SignIn from "./pages/SignIn";
 import AuthLessLayout from './layouts/AuthLessLayout/index';
 import PrivateRoute from './components/Auth/PrivateRoute/index';
 import PublicRoute from './components/Auth/PublicRoute/index';
+import FavoriteProducts from './pages/Favorite/index';
 
 export const appRoutes = [
   {
@@ -17,8 +18,8 @@ export const appRoutes = [
       </PrivateRoute>,
     children: [
       { index: true, element: <Store /> },
-      { path: NOT_FOUND, element: <NotFound /> },
       { path: PRODUCT_DETAIL, element: <ProductDetail /> },
+      { path: FAVORITE_PRODUCT, element: <FavoriteProducts /> },
     ],
   },
   {
@@ -30,5 +31,9 @@ export const appRoutes = [
     children: [
       { path: SIGN_IN, element: <SignIn /> },
     ],
+  },
+  {
+    path: NOT_FOUND,
+    element: <NotFound />
   },
 ];

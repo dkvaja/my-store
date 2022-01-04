@@ -2,11 +2,12 @@ import React from 'react'
 import { ProductDetailWrapper } from './productDetail.styles';
 import { useParams } from 'react-router-dom';
 import { CartItemsTypes } from '../Store';
-import { Backdrop, Button, Chip, CircularProgress, Grid, Typography } from '@mui/material';
+import { Backdrop, Button, Chip, CircularProgress, Grid, Typography, IconButton } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect } from 'react';
-import { addToCart, getSelectedProduct } from '../../redux/slices/productSlice';
+import { addToCart, addToFavorite, getSelectedProduct } from '../../redux/slices/productSlice';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 
 const ProductDetail: React.FC = () => {
 
@@ -37,6 +38,16 @@ const ProductDetail: React.FC = () => {
             }
 
             dispatch(addToCart(updatedCartData))
+        }
+    }
+
+    const handleAddToFavorite = (item: CartItemsTypes) => {
+        if (item) {
+            const isItemPresent = cartData.find((items: CartItemsTypes) => items?.id === item?.id)
+            if (isItemPresent) {
+                return
+            }
+            dispatch(addToFavorite(item))
         }
     }
 
@@ -71,6 +82,9 @@ const ProductDetail: React.FC = () => {
                         <Button variant='contained' onClick={() => handleAddToCart(selectedProductData?.selectedProduct)}>
                             Add To Cart
                         </Button>
+                        <IconButton color="primary" onClick={() => handleAddToFavorite(selectedProductData?.selectedProduct)} >
+                            <FavoriteBorderRoundedIcon />
+                        </IconButton>
                     </div>
                 </Grid>
             </Grid>

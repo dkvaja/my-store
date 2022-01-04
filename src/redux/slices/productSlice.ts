@@ -5,6 +5,7 @@ export interface initialStateType {
   products: [];
   selectedProduct?: {};
   cartProducts?: CartItemsTypes[];
+  favoriteProducts?: CartItemsTypes[];
   isLoading: boolean;
   error: string;
 }
@@ -13,6 +14,7 @@ const initialState: initialStateType = {
   products: [],
   selectedProduct: {},
   cartProducts: [],
+  favoriteProducts: [],
   isLoading: false,
   error: "",
 };
@@ -41,6 +43,9 @@ export const productSlice = createSlice({
   reducers: {
     addToCart: (state: initialStateType, { payload }) => {
       state.cartProducts = payload;
+    },
+    addToFavorite: (state: initialStateType, { payload }) => {
+      state.favoriteProducts?.push(payload);
     },
   },
   extraReducers: {
@@ -78,5 +83,5 @@ export const productSlice = createSlice({
     },
   },
 });
-export const { addToCart } = productSlice.actions;
+export const { addToCart, addToFavorite } = productSlice.actions;
 export const productReducer = productSlice.reducer;
