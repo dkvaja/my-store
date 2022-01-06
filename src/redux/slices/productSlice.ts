@@ -28,7 +28,7 @@ export const getProductData = createAsyncThunk(
 );
 
 export const getSelectedProduct = createAsyncThunk(
-  "product/getProductData",
+  "product/getSelectedProduct",
   async (productId: string, _thunkAPI) => {
     const res = await (
       await fetch(`https://fakestoreapi.com/products/${productId}`)
